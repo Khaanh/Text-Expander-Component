@@ -67,17 +67,24 @@ function TextExpander({
 
 	return (
 		<div className={className}>
+			{expanded && (
+				<>
+					<span>{textContent.join(" ")}...</span>
+					<button style={{ color: buttonColor }} onClick={handleToggleText}>
+						{expandButtonText}
+					</button>
+				</>
+			)}
 			{expandedStat ? (
 				<>
-					<span>{textContent.slice(0, children.length).join(" ")}</span>
+					<span>{textContent.join(" ")} </span>
 					<button style={{ color: buttonColor }} onClick={handleToggleText}>
-						{/* {expandButtonText} show less */}
 						{expandedStat ? "show less" : expandButtonText}
 					</button>
 				</>
 			) : (
 				<>
-					<span>{textContent.slice(0, collapseState).join(" ")}...</span>
+					<span>{textContent.slice(0, collapseState).join(" ")}... </span>
 					<button style={{ color: buttonColor }} onClick={handleToggleText}>
 						{expandButtonText}
 					</button>
