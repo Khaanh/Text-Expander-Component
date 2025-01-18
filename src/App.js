@@ -52,6 +52,7 @@ export default App;
 function TextExpander({
 	children,
 	collapsedNumWords,
+	collapseButtonText,
 	expandButtonText,
 	buttonColor,
 	expanded,
@@ -67,26 +68,32 @@ function TextExpander({
 
 	return (
 		<div className={className}>
-			{expanded && (
+			{/* {expanded && (
 				<>
 					<span>{textContent.join(" ")}...</span>
 					<button style={{ color: buttonColor }} onClick={handleToggleText}>
 						{expandButtonText}
+						asdasdasdas
 					</button>
 				</>
-			)}
-			{expandedStat ? (
+			)} */}
+			{!expandedStat ? (
 				<>
-					<span>{textContent.join(" ")} </span>
+					<span>{textContent.slice(0, collapseState).join(" ")}...</span>
 					<button style={{ color: buttonColor }} onClick={handleToggleText}>
-						{expandedStat ? "show less" : expandButtonText}
+						{expandButtonText}
 					</button>
 				</>
 			) : (
 				<>
-					<span>{textContent.slice(0, collapseState).join(" ")}... </span>
+					<span>{textContent.join(" ")} </span>
 					<button style={{ color: buttonColor }} onClick={handleToggleText}>
-						{expandButtonText}
+						{expandedStat && collapseButtonText
+							? collapseButtonText
+							: expandedStat
+							? "show less"
+							: expandButtonText}
+						<br />
 					</button>
 				</>
 			)}
